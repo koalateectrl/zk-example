@@ -15,7 +15,8 @@ contract ZK is Verifier {
 
     function isPreImage(
         uint256[2] memory a,
-        uint256[2][2] memory b,
+        uint256[2] memory b_0,
+        uint256[2] memory b_1,
         uint256[2] memory c,
         uint256[1] memory input // public inputs
     ) public view returns (bool) {
@@ -23,7 +24,7 @@ contract ZK is Verifier {
         //     revert("Supplied inputs do not match contracts");
         // }
 
-        return verifyProof(a, b, c, input);
+        return verifyProof(a, [b_0, b_1], c, input);
         // return verifyProof(a, b, c, input[1]);
     }
 }

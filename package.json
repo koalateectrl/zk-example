@@ -31,6 +31,9 @@
   "scripts": {
     "circom:dev": "hardhat circom --deterministic --debug --verbose",
     "circom:prod": "hardhat circom --verbose",
-    "test": "hardhat test"
+    "test": "hardhat test",
+    "witness-calc": "snarkjs wtns calculate ./artifacts/circom/init.wasm ./circuits/init.json ./artifacts/circom/init.wtns",
+    "create-proof": "snarkjs groth16 prove ./artifacts/circom/init.zkey ./artifacts/circom/init.wtns ./artifacts/circom/proof.json ./artifacts/circom/public.json",
+    "verify-proof": "snarkjs groth16 verify ./artifacts/circom/init.vkey.json ./artifacts/circom/public.json ./artifacts/circom/proof.json"
   }
 }
