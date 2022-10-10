@@ -26,7 +26,7 @@ Then, run `npx hardhat run scripts/deploy.js --network goerli` to deploy the `ZK
 
 To interact with the deployed contract, we need to generate the appropriate calldata to pass into Solidity. To do this, we will perform the steps below.
 
-1. `yarn circom:dev`
+1. `yarn circom:prod`
 2. `yarn witness-calc`
 3. `yarn create-proof`
 4. `yarn verify-proof`

@@ -15,4 +15,4 @@ template Main() {
     out === x_cubed - x + 7;
 }
 
-component main = Main();
+component main {public [x]} = Main();
