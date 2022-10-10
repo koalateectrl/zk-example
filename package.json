@@ -30,10 +30,12 @@
   },
   "scripts": {
     "circom:dev": "hardhat circom --deterministic --debug --verbose",
+    "dev:verify-proof": "snarkjs groth16 verify ./artifacts/circom/init.vkey.json ./artifacts/circom/init.public.json ./artifacts/circom/init.proof.json",
     "circom:prod": "hardhat circom --verbose",
     "test": "hardhat test",
-    "witness-calc": "snarkjs wtns calculate ./artifacts/circom/init.wasm ./circuits/init.json ./artifacts/circom/init.wtns",
-    "create-proof": "snarkjs groth16 prove ./artifacts/circom/init.zkey ./artifacts/circom/init.wtns ./artifacts/circom/proof.json ./artifacts/circom/public.json",
-    "verify-proof": "snarkjs groth16 verify ./artifacts/circom/init.vkey.json ./artifacts/circom/public.json ./artifacts/circom/proof.json"
+    "witness-calc": "snarkjs wtns calculate ./circuits/init.wasm ./circuits/init.json ./circuits/init.wtns",
+    "create-proof": "snarkjs groth16 prove ./circuits/init.zkey ./circuits/init.wtns ./circuits/init.proof.json ./circuits/init.public.json",
+    "verify-proof": "snarkjs groth16 verify ./circuits/init.vkey.json ./circuits/init.public.json ./circuits/init.proof.json",
+    "generate-call": "snarkjs zkey export soliditycalldata ./circuits/init.public.json ./circuits/init.proof.json"
   }
 }

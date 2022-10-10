@@ -20,12 +20,7 @@ contract ZK is Verifier {
         uint256[2] memory c,
         uint256[1] memory input // public inputs
     ) public view returns (bool) {
-        // if (input[0] != output) {
-        //     revert("Supplied inputs do not match contracts");
-        // }
-
         return verifyProof(a, [b_0, b_1], c, input);
-        // return verifyProof(a, b, c, input[1]);
     }
 }
 

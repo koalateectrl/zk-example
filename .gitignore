@@ -8,6 +8,9 @@ typechain-types
 #Hardhat files
 cache
 artifacts
+circuits/*.proof.json
+circuits/*.public.json
+circuits/*.wtns
 
 #Computer files
 .DS_Store
