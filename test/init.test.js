@@ -1,34 +1,46 @@
 const hre = require("hardhat");
 const { assert } = require("chai");
-const { isCallTrace } = require("hardhat/internal/hardhat-network/stack-traces/message-trace");
+const { buildMimcSponge } = require("circomlibjs");
 
-describe("init circuit", () => {
+describe("hash circuit", () => {
     let circuit;
+    let mimc;
+  
+    const mimcKey = 0;
+    const mimcNumOutputs = 1;
     const sampleInput = {
-        x: "1764",
-    }
+        preImage: "1764",
+    };
     const sanityCheck = true;
-
+  
     before(async () => {
-        circuit = await hre.circuitTest.setup("init");
+      mimc = await buildMimcSponge();
+      circuit = await hre.circuitTest.setup("init");
     });
-
+  
     it("produces a witness with valid constraints", async () => {
-        const witness = await circuit.calculateWitness(sampleInput, sanityCheck);
-        await circuit.checkConstraints(witness);
+      const witness = await circuit.calculateWitness(sampleInput, sanityCheck);
+      await circuit.checkConstraints(witness);
     });
-
+  
     it("has expected witness values", async () => {
-        const witness = await circuit.calculateLabeledWitness(
-          sampleInput,
-          sanityCheck
-        );
-        assert.propertyVal(witness, "main.x", sampleInput.x);
-
-        assert.propertyVal(
-          witness,
-          "main.out",
-          "5489029987"
-        );
+      const witness = await circuit.calculateLabeledWitness(
+        sampleInput,
+        sanityCheck
+      );
+      assert.propertyVal(witness, "main.preImage", sampleInput.preImage);
+      // You might want to test some intermediate values in the mimc sponge
+      assert.propertyVal(
+        witness,
+        "main.hash",
+        "15893827533473716138720882070731822975159228540693753428689375377280130954696"
+      );
+    });
+  
+    it("has the correct output", async () => {
+      const mimcResult = mimc.multiHash([sampleInput.preImage], mimcKey, mimcNumOutputs);
+      const expected = { hash: mimc.F.toObject(mimcResult) };
+      const witness = await circuit.calculateWitness(sampleInput, sanityCheck);
+      await circuit.assertOut(witness, expected);
     });
 });

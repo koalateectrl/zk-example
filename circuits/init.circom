@@ -1,18 +1,18 @@
 pragma circom 2.0.3;
 
+include "../node_modules/circomlib/circuits/mimcsponge.circom";
+
 template Main() {
-    signal input x;
-    signal x_squared;
-    signal x_cubed;
-    signal output out;
+    signal output hash;
+    signal input preImage;
 
-    x_squared <-- x * x;
-    x_cubed <-- x_squared * x;
-    out <-- x_cubed - x + 7;
+    // Using MiMC as it is SNARK-friendly hash function
+    component mimc = MiMCSponge(1, 220, 1);
+    mimc.ins[0] <== preImage;
+    mimc.k <== 0;
 
-    x_squared === x * x;
-    x_cubed === x_squared * x;
-    out === x_cubed - x + 7;
+    hash <== mimc.outs[0];
 }
 
-component main {public [x]} = Main();
+component main = Main();
+// component main {public [preImage]} = Main();
