@@ -24,5 +24,11 @@ contract ZK is Verifier {
         require(hash == inputs[0], "wrong hash");
         uint256[1] memory publicInputs = inputs;
         return verifyProof(a, [b_0, b_1], c, publicInputs);
+
+        // require(verifyProof(a, [b_0, b_1], c, publicInputs), "invalid proof");
+        // _mint();
+        // return true;
     }
+
+    function _mint() internal {}
 }

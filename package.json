@@ -36,6 +36,6 @@
     "witness-calc": "snarkjs wtns calculate ./circuits/init.wasm ./circuits/init.json ./circuits/init.wtns",
     "create-proof": "snarkjs groth16 prove ./circuits/init.zkey ./circuits/init.wtns ./circuits/init.proof.json ./circuits/init.public.json",
     "verify-proof": "snarkjs groth16 verify ./circuits/init.vkey.json ./circuits/init.public.json ./circuits/init.proof.json",
-    "generate-call": "snarkjs zkey export soliditycalldata ./circuits/init.public.json ./circuits/init.proof.json"
+    "generate-call": "snarkjs zkey export soliditycalldata ./circuits/init.public.json ./circuits/init.proof.json | $INIT_CWD/scripts/hexConverter.js"
   }
 }
