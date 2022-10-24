@@ -32,7 +32,7 @@ To interact with the deployed contract, we need to generate the appropriate call
 4. `yarn verify-proof`
 5. `yarn generate-call`
 
-The output of the last command will be the calldata needed for Solidity. Note that the value of b is a 2 x 2 array and will need to be split up into two inputs of 1 x 2 arrays to pass into the Solidity function. Also, note that all values generated are in hex and may need to be converted into decimal before inputing as function arguments.
+The output of the last command will be the calldata needed for Solidity. I have written a file called `hexConverter.js` that takes the snarkjs output and returns in into a format suitable to use as parameters into a smart contract. Note that if you don't want to use this `hexConverter.js` file and run the raw snarkjs command, then the value of b is a 2 x 2 array and will need to be split up into two inputs of 1 x 2 arrays for function arguments. Also, note that all values generated are in hex and may need to be converted into decimal before inputing as function arguments.
 
 ## Acknowledgements
 
