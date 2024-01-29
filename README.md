@@ -18,9 +18,9 @@ Tests can be run using `yarn test`. As convention in Hardhat, the tests will be 
 
 ## Deployment
 
-To deploy to Goerli network using Infura, first create `.env` file following the example in `.env.example` and fill in the two fields.
+To deploy to Sepolia network using Infura, first create `.env` file following the example in `.env.example` and fill in the two fields.
 
-Then, run `npx hardhat run scripts/deploy.js --network goerli` to deploy the `ZK.sol` contract. This will compile the contract and deploy it to the Goerli network. To verify the contract, run `npx hardhat verify --network goerli <address>`.
+Then, run `npx hardhat run scripts/deploy.js --network sepolia` to deploy the `ZK.sol` contract. This will compile the contract and deploy it to the Goerli network. To verify the contract, run `npx hardhat verify --network sepolia <address>`.
 
 ## Generate Solidity Calldata
 

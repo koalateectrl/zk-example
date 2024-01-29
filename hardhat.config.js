@@ -25,14 +25,14 @@ module.exports = {
       },
     ],
   },
-  // networks: {
-  //   hardhat: {},
-  //   goerli: {
-  //     url: `https://goerli.infura.io/v3/${process.env.INFURA_ID}`,
-  //     accounts: [`0x` + process.env.PRIVATE_KEY]
-  //   },
-  // },
-  // etherscan: {
-  //   apiKey: `${process.env.ETHERSCAN_KEY}`
-  // }
+  networks: {
+    hardhat: {},
+    sepolia: {
+      url: `https://eth-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
+      accounts: [`${process.env.SEPOLIA_PRIVATE_KEY}`]
+    },
+  },
+  etherscan: {
+    apiKey: `${process.env.ETHERSCAN_API_KEY}`
+  }
 };
